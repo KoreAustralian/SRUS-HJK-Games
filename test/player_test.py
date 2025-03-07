@@ -19,35 +19,35 @@ class PlayerTest(unittest.TestCase):
         player_list = PlayerList()
         self.assertTrue(player_list.is_empty())
 
-        player_list.insert_beginning(player)
+        player_list.insert_head(player)
         self.assertFalse(player_list.is_empty())
 
         self.assertEqual(player_list._head.player, player)
 
-    def test_insert_beginning_in_not_empty_list(self):
+    def test_insert_head_in_not_empty_list(self):
         player1 = Player("1", "HJK")
         player2 = Player("2", "SSY")
         player_list = PlayerList()
 
         self.assertTrue(player_list.is_empty())
-        player_list.insert_beginning(player1)
+        player_list.insert_head(player1)
 
         self.assertFalse(player_list.is_empty())
-        player_list.insert_beginning(player2)
+        player_list.insert_head(player2)
 
         self.assertEqual(player_list._head.player, player2)
         self.assertEqual(player_list._head.next.player, player1)
 
-    def test_insert_end_in_not_empty_list(self):
+    def test_insert_tail_in_not_empty_list(self):
         player1 = Player("1", "HJK")
         player2 = Player("2", "SSY")
         player_list = PlayerList()
 
         self.assertTrue(player_list.is_empty())
-        player_list.insert_end(player1)
+        player_list.insert_tail(player1)
 
         self.assertFalse(player_list.is_empty())
-        player_list.insert_end(player2)
+        player_list.insert_tail(player2)
 
         self.assertEqual(player_list._head.player, player1)
         self.assertEqual(player_list._tail.player, player2)

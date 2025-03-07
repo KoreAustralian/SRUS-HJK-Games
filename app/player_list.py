@@ -13,7 +13,7 @@ class PlayerList:
     def is_empty(self):
         return self._head is None
 
-    def insert_beginning(self, player):
+    def insert_head(self, player):
         new_node = PlayerNode(player)
 
         if self.is_empty():
@@ -24,7 +24,7 @@ class PlayerList:
             self._head.previous = new_node
             self._head = new_node
 
-    def insert_end(self, player):
+    def insert_tail(self, player):
         new_node = PlayerNode(player)
 
         if self.is_empty():
