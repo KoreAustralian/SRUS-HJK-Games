@@ -1,4 +1,5 @@
 from app.player_node import *
+from app.player import Player
 
 
 class PlayerList:
@@ -74,3 +75,35 @@ class PlayerList:
             current = current.next
         return None
 
+    def display(self, forward=True):
+        if self.is_empty():
+            print("list is empty")
+            return
+
+        if forward:
+            current = self._head
+            while current:
+                print(current.player)
+                current = current.next
+        else:
+            current = self.tail
+            while current:
+                print(current.player)
+                current = current.previous
+
+
+# # checking display code
+# players = PlayerList()
+# player1 = Player("1", "HJK")
+# player2 = Player("2", "SSY")
+# player3 = Player("3", "SAY")
+#
+# players.insert_head(player1)
+# players.insert_tail(player2)
+# players.insert_tail(player3)
+#
+# print("Print Items in the Doubly linked forwards:")
+# players.display()
+#
+# print("Print Items in the Doubly linked backwards:")
+# players.display(forward=False)
