@@ -54,3 +54,23 @@ class PlayerList:
         self._tail.next = None
 
         return deleted_node.player
+
+    def delete_by_key(self, key):
+        if self.is_empty():
+            return None
+
+        current = self._head
+
+        while current:
+            if current.key == key:
+                if current == self._head:
+                    return self.delete_head()
+                elif current == self._tail:
+                    return self.delete_tail()
+                else:
+                    current.previous.next = current.next
+                    current.next.previous = current.previous
+                    return current.player
+            current = current.next
+        return None
+

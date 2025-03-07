@@ -83,6 +83,23 @@ class PlayerTest(unittest.TestCase):
         self.assertEqual(deleted_player, player3)
         self.assertEqual(player_list._tail.player, player2)
 
+    def test_delete_middle_node_by_key(self):
+        player1 = Player("1", "HJK")
+        player2 = Player("2", "SSY")
+        player3 = Player("3", "SAY")
+        player_list = PlayerList()
+
+        player_list.insert_head(player1)
+        player_list.insert_tail(player2)
+        player_list.insert_tail(player3)
+
+        deleted_player = player_list.delete_by_key("2")
+        self.assertEqual(deleted_player, player2)
+        self.assertEqual(player_list._head.player, player1)
+        self.assertEqual(player_list._tail.player, player3)
+        self.assertEqual(player_list._head.next.player, player3)
+        self.assertEqual(player_list._tail.previous.player, player1)
+
 
 if __name__ == '__main__':
     unittest.main()
