@@ -24,7 +24,7 @@ class PlayerTest(unittest.TestCase):
 
         self.assertEqual(player_list._head.player, player)
 
-    def test_insert_in_not_empty_list(self):
+    def test_insert_beginning_in_not_empty_list(self):
         player1 = Player("1", "HJK")
         player2 = Player("2", "SSY")
         player_list = PlayerList()
@@ -37,6 +37,22 @@ class PlayerTest(unittest.TestCase):
 
         self.assertEqual(player_list._head.player, player2)
         self.assertEqual(player_list._head.next.player, player1)
+
+    def test_insert_end_in_not_empty_list(self):
+        player1 = Player("1", "HJK")
+        player2 = Player("2", "SSY")
+        player_list = PlayerList()
+
+        self.assertTrue(player_list.is_empty())
+        player_list.insert_end(player1)
+
+        self.assertFalse(player_list.is_empty())
+        player_list.insert_end(player2)
+
+        self.assertEqual(player_list._head.player, player1)
+        self.assertEqual(player_list._tail.player, player2)
+        self.assertEqual(player_list._head.next.player, player2)
+        self.assertEqual(player_list._tail.previous.player, player1)
 
 
 if __name__ == '__main__':
