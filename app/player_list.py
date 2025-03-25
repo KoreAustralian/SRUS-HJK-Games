@@ -8,6 +8,10 @@ class PlayerList:
         self._tail = None
 
     @property
+    def head(self):
+        return self._head
+
+    @property
     def tail(self):
         return self._tail
 
@@ -41,8 +45,12 @@ class PlayerList:
             return None
 
         deleted_node = self._head
-        self._head = self._head.next
-        self._head.previous = None
+        if self._head == self._tail:
+            self._head = None
+            self._tail = None
+        else:
+            self._head = self._head.next
+            self._head.previous = None
 
         return deleted_node.player
 
@@ -51,8 +59,13 @@ class PlayerList:
             return None
 
         deleted_node = self._tail
-        self._tail = self._tail.previous
-        self._tail.next = None
+
+        if self._head == self._tail:
+            self._head = None
+            self._tail = None
+        else:
+            self._tail = self._tail.previous
+            self._tail.next = None
 
         return deleted_node.player
 

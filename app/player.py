@@ -14,3 +14,14 @@ class Player:
     def __str__(self):
         return f'Player ID: {self._uid}, Player Name: {self._player_name}'
 
+    def __hash__(self):
+        return Player.hash_function(self._uid)
+
+    def __eq__(self, other):
+        return self._uid == other.uid
+
+    @classmethod
+    def hash_function(cls, key: str) -> int:
+        return sum(ord(char) for char in key)
+
+
