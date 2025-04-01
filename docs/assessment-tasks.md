@@ -71,7 +71,19 @@ def test_sort_players(self):
 What was the outcome of running the above unit test, copy paste the output **for just this particular test** below:
 
 ```text
-Your output here
+player_test.py::PlayerTest::test_sort_players FAILED                     [100%]
+player_test.py:103 (PlayerTest.test_sort_players)
+self = <player_test.PlayerTest testMethod=test_sort_players>
+
+    def test_sort_players(self):
+        players = [Player('01', "Alice", 10), Player('02', "Bob", 5), Player('03', "Charlie", 15)]
+        # note: ensure initialization code is valid for **your** implementation
+    
+        # do **not** change the following code:
+>       sorted_players = sorted(players)
+E       TypeError: '<' not supported between instances of 'Player' and 'Player'
+
+player_test.py:109: TypeError
 ```
 
 ### 4.3. Success criteria
@@ -103,7 +115,20 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+FAILED [100%]
+player_test.py:116 (PlayerTest.test_players_can_be_compared_by_score)
+self = <player_test.PlayerTest testMethod=test_players_can_be_compared_by_score>
+
+    def test_players_can_be_compared_by_score(self):
+        # note: ensure initialization code is valid for **your** implementation
+        alice = Player('01', "Alice", 10)
+        bob = Player('02', "Bob", 5)
+    
+        # Add the appropriate expression to the following assert test
+>       self.assertTrue(alice > bob)
+E       TypeError: '>' not supported between instances of 'Player' and 'Player'
+
+player_test.py:123: TypeError
 ```
 
 Implement the appropriate magic method in the Player class and ensure you pass this test (and only this test!).
@@ -121,12 +146,19 @@ Implement the appropriate magic method in the Player class and ensure you pass t
 Rerun `test_sort_players` does the test pass? If not, include the output below:
 
 ```text
-Your output here
+It passed
+============================= test session starts =============================
+collecting ... collected 2 items
+
+player_test.py::PlayerTest::test_players_can_be_compared_by_score PASSED [ 50%]
+player_test.py::PlayerTest::test_sort_players PASSED                     [100%]
+
+============================== 2 passed in 0.01s ==============================
 ```
 
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to - you need to figure out what that is!)?
 
-> Answer here
+> beacuse there was not a comparison method for '>'. 
 
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
@@ -161,7 +193,7 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> it is BigO(n), because running time of an algorithm grows linearly with the size of the input
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -176,7 +208,14 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+    def test_sort_player_descending(self):
+        players = [Player('01', "Alice", 10), Player('02', "Bob", 5), Player('03', "Charlie", 15)]
+
+        sorted_players = Player.sort_descending(players)
+
+        manually_sorted_players = [Player('02', "Bob", 5), Player('01', "Alice", 10), Player('03', "Charlie", 15)]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
 ```
 
 #### 5.2.3. Success criteria
@@ -225,7 +264,7 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+
 ```
 
 Provide a reason why this test failed (if you got recursion errors, you need to explain **why** they occurred).
