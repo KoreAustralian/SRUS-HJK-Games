@@ -1,7 +1,10 @@
 import unittest
+import sys, os
 
-from app.player import Player
-from app.player_list import PlayerList
+sys.path.append(os.path.abspath(os.path.join('..', 'app')))
+
+from app.player import *
+from app.player_list import *
 
 
 class PlayerTest(unittest.TestCase):
@@ -99,6 +102,19 @@ class PlayerTest(unittest.TestCase):
         self.assertEqual(player_list._tail.player, player3)
         self.assertEqual(player_list._head.next.player, player3)
         self.assertEqual(player_list._tail.previous.player, player1)
+
+    def test_sort_players(self):
+        players = [Player("Alice", uid='01', score=10), Player("Bob", uid='02', score=5), Player("Charlie", uid='03', score=15)]
+        # note: ensure initialization code is valid for **your** implementation
+
+        # do **not** change the following code:
+        sorted_players = sorted(players)
+
+        # players must be sorted by score as shown here:
+        manually_sorted_players == [Player("Bob", uid='02', score=5), Player("Alice", uid='01', score=10),
+                                    Player("Charlie", uid='03', score=15)]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
 
 
 if __name__ == '__main__':
