@@ -30,7 +30,7 @@ class Player:
 
     def __repr__(self):
         class_name = type(self).__name__
-        return f"{class_name}({self.id!r}, "
+        return f"{class_name}({self.uid!r}, "
 
     @score.setter
     def score(self, value):
@@ -51,7 +51,7 @@ class Player:
         left = []
         right = []
         for x in arr[1:]:
-            if x < pivot:
+            if x > pivot:
                 left.append(x)
             else:
                 right.append(x)

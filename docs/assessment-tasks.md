@@ -287,6 +287,7 @@ Process finished with exit code 1
 ```
 
 Provide a reason why this test failed (if you got recursion errors, you need to explain **why** they occurred).
+> When i using sort_descending function, it calls the __gt__ method. Since the list is already sorted, no error occurs, and the __gt__ method keeps being called until it exceeds the recursion limit. And then, the recursion error is happend
 
 If your implementation did not fail, you must explain what changes you made to the original algorithm given by the senior developer to ensure that it did not fail.
 

@@ -128,7 +128,7 @@ class PlayerTest(unittest.TestCase):
 
         sorted_players = Player.sort_descending(players)
 
-        manually_sorted_players = [Player('02', "Bob", 5), Player('01', "Alice", 10), Player('03', "Charlie", 15)]
+        manually_sorted_players = [Player('03', "Charlie", 15), Player('01', "Alice", 10), Player('02', "Bob", 5)]
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
@@ -138,7 +138,7 @@ class PlayerTest(unittest.TestCase):
         sorted_players = Player.sort_descending(players)
 
         for i in range(len(sorted_players) - 1):
-            self.assertTrue(sorted_players[i].score <= sorted_players[i+1].score)
+            self.assertTrue(sorted_players[i].score >= sorted_players[i+1].score)
 
     def test_1000_players_already_sorted(self):
         players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
@@ -148,7 +148,7 @@ class PlayerTest(unittest.TestCase):
         sorted_players_2 = Player.sort_descending(sorted_players)
 
         for i in range(len(sorted_players_2) - 1):
-            self.assertTrue(sorted_players_2[i].score <= sorted_players_2[i+1].score)
+            self.assertTrue(sorted_players_2[i].score >= sorted_players_2[i+1].score)
 
 
 if __name__ == '__main__':
