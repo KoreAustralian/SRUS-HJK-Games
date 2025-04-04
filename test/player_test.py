@@ -132,12 +132,12 @@ class PlayerTest(unittest.TestCase):
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
-    def tes_1000_players(self):
+    def test_1000_players(self):
         players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
 
         sorted_players = Player.sort_descending(players)
 
-        for i in range(sorted_players):
+        for i in range(len(sorted_players) - 1):
             self.assertTrue(sorted_players[i].score < sorted_players[i+1].score)
 
 
