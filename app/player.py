@@ -47,15 +47,18 @@ class Player:
     def sort_descending(cls, arr):
         if len(arr) <= 1:
             return arr
-        pivot = arr[0]
+        pivot = arr[len(arr) // 2]
+        equal = []
         left = []
         right = []
-        for x in arr[1:]:
+        for x in arr:
             if x > pivot:
                 left.append(x)
-            else:
+            elif x < pivot:
                 right.append(x)
-        return cls.sort_descending(left) + [pivot] + cls.sort_descending(right)
+            else:
+                equal.append(x)
+        return cls.sort_descending(left) + equal + cls.sort_descending(right)
 
 
 
