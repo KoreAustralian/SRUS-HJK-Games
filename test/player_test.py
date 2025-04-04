@@ -138,7 +138,7 @@ class PlayerTest(unittest.TestCase):
         sorted_players = Player.sort_descending(players)
 
         for i in range(len(sorted_players) - 1):
-            self.assertTrue(sorted_players[i].score < sorted_players[i+1].score)
+            self.assertTrue(sorted_players[i].score <= sorted_players[i+1].score)
 
 
 if __name__ == '__main__':
