@@ -96,7 +96,7 @@ player_test.py:109: TypeError
 
 The tests checks that calling sorted on a list of players will sort them by score, what is the **only** magic method that must be implemented in the player class for the `sorted` function to succeed?
 
-> Answer Here
+> __lt__ method. if __lt__ method is defined, python can comparee two values with < operator.
 
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -158,7 +158,7 @@ player_test.py::PlayerTest::test_sort_players PASSED                     [100%]
 
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to - you need to figure out what that is!)?
 
-> beacuse there was not a comparison method for '>'. 
+> It doesn't fail, beacuse there was a comparison method. 
 
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
 
@@ -296,8 +296,30 @@ If your implementation did not fail, you must explain what changes you made to t
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+@classmethod
+    def sort_descending(cls, arr):
+        if len(arr) <= 1:
+            return arr
+        pivot = arr[len(arr) // 2]   
+        equal = []
+        left = []
+        right = []
+        for x in arr:
+            if x > pivot:
+                left.append(x)
+            elif x < pivot:
+                right.append(x)
+            else:
+                equal.append(x)
+        return cls.sort_descending(left) + equal + cls.sort_descending(right)
+
+
+// i fixed:
+// pivot = arr[len(arr) // 2] 
+// for x in arr
+// else: equal.append(x)
+// ("i'm so sorry, i don't know how to highlight code. So i mentioned codes which i fixed in here")
+
 ```
 
 #### 5.3.5. Success criteria
@@ -310,13 +332,13 @@ Propose a fix to your sorting algorithm that fixes this issue.
 Complete the following snippet before you submit:
 
 ```text
-I, <name and student number>, completed this work in class <room number>, on <date>, under the supervision of <assessor's name>.
+I, <HONG JAE KIM(20115830)>, completed this work(until step 5.2.3) in class <306>, on <01/04/2025>, under the supervision of <Raf>.
 ```
 
 Or (if not completed in class):
 
 ```text
-I, <name and student number>, completed this work outside of the scheduled hours. I emailed <assessors name>, on <date>, along with my documented reason for non-attendance, and have scheduled a time to meet to discuss my work.
+I, <HONG JAE KIM(20115830)>, completed this work outside of the scheduled hours. I emailed <assessors name>, on <date>, along with my documented reason for non-attendance, and have scheduled a time to meet to discuss my work.
 
 I understand that until I meet my assessor to confirm that this work is a valid and true representation of my abilities to write and debug a sorting algorithm in Python, this submission cannot be considered complete.
 
