@@ -244,7 +244,13 @@ Using the code above as a starting point, create a test case to test your custom
 Include your test case below:
 
 ```python
+def test_1000_players(self):
+    players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
 
+    sorted_players = Player.sort_descending(players)
+
+    for i in range(len(sorted_players) - 1):
+        self.assertTrue(sorted_players[i].score <= sorted_players[i+1].score)
 ```
 
 #### 5.3.2. Success criteria
@@ -264,7 +270,20 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
+..\app\player.py:54: in sort_descending
+    if x < pivot:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+self = <[AttributeError("'Player' object has no attribute 'id'") raised in repr()] Player object at 0x1e3afe58830>
+other = <[AttributeError("'Player' object has no attribute 'id'") raised in repr()] Player object at 0x1e3afe778f0>
+
+    def __gt__(self, other):
+>       return self.score > other.score
+E       RecursionError: maximum recursion depth exceeded
+
+..\app\player.py:20: RecursionError
+PASSED [ 60%]PASSED           [ 80%]PASSED                     [100%]
+Process finished with exit code 1
 ```
 
 Provide a reason why this test failed (if you got recursion errors, you need to explain **why** they occurred).

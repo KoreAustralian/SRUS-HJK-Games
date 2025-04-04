@@ -140,6 +140,16 @@ class PlayerTest(unittest.TestCase):
         for i in range(len(sorted_players) - 1):
             self.assertTrue(sorted_players[i].score <= sorted_players[i+1].score)
 
+    def test_1000_players_already_sorted(self):
+        players = [Player(f"{i:03}", f"Player {i}", random.randint(0, 1000)) for i in range(1000)]
+
+        sorted_players = Player.sort_descending(players)
+
+        sorted_players_2 = Player.sort_descending(sorted_players)
+
+        for i in range(len(sorted_players_2) - 1):
+            self.assertTrue(sorted_players_2[i].score <= sorted_players_2[i+1].score)
+
 
 if __name__ == '__main__':
     unittest.main()
