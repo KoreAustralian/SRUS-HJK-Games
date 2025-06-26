@@ -34,6 +34,26 @@ class TestPlayerBst(unittest.TestCase):
         self.assertEqual(bst.root.right.player.name, "suyeon")
         self.assertEqual(bst.root.right.player.score, 200)
 
+    def test_search_existing_node(self):
+        bst = PlayerBst()
+        bst.insert(Player("suyeon", 200))
+        bst.insert(Player("hongjae", 100))
+
+        node = bst.search("hongjae")
+        self.assertIsNotNone(node)
+        self.assertEqual(node.player.name, "hongjae")
+        self.assertEqual(node.player.score, 100)
+
+        node = bst.search("suyeon")
+        self.assertIsNotNone(node)
+        self.assertEqual(node.player.name, "suyeon")
+        self.assertEqual(node.player.score, 200)
+
+    def test_search_from_empty(self):
+        bst = PlayerBst()
+        node = bst.search("AnyName")
+        self.assertIsNone(node)
+
 
 if __name__ == '__main__':
     unittest.main()

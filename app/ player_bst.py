@@ -10,7 +10,7 @@ class PlayerBst:
         return self._root
 
     def insert(self, player):
-        # Insert new Player object into the binary seach tree based on the player's name.
+        """ Insert new Player object into the binary seach tree based on the player's name """
         if self._root is None:
             self._root = PlayerBNode(player)
         else:
@@ -34,3 +34,17 @@ class PlayerBst:
                 current_node.right = PlayerBNode(player)
             else:
                 self.insert_recursive(current_node.right, player)
+
+    def search(self, name):
+        """ Search Player node by name """
+        return self._search_recursive(self._root, name)
+
+    def _search_recursive(self, current_node, name):
+        if current_node is None:
+            return None
+        if current_node.player.name == name:
+            return current_node
+        elif name < current_node.player.name:
+            return self._search_recursive(current_node.left, name)
+        else:
+            return self._search_recursive(current_node.right, name)
