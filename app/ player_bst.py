@@ -1,6 +1,7 @@
 from app.player_bnode import PlayerBNode
 
-class PlayerBST:
+
+class PlayerBst:
     def __init__(self):
         self._root = None
 
